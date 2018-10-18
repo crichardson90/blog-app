@@ -1,0 +1,11 @@
+<h1 class="blog-post-header">My Blog Posts</h1>
+
+<% @blog_posts.each do |blog_post| %>
+<%= link_to("/blog_posts/#{blog_post.id}") do %>
+    <div class="blog-post">
+      <h2><%= blog_post.title %></h2>
+      <p><%= blog_post.content %></p>
+      <p>Comments would go here:</p>
+    </div>
+  <% end %>
+<% end %>

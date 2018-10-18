@@ -1,0 +1,12 @@
+<h1>This is the new page!</h1>
+
+<%= form_tag("/blog_posts", method: :post) do %>
+  <label for="title">Enter Title:</label>
+  <input type="text" id="title" name="title" placeholder="New Title">
+  <br>
+  <label for="content">Enter Content:</label>
+  <textarea id="content" name="content" placeholder="Enter content here" cols="60" rows="20" style="resize: none"></textarea>
+  <br>
+  <input type="submit" value="Create new blog post!">
+
+<% end %>
