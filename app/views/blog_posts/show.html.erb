@@ -16,10 +16,22 @@
 
 <h4>Leave a Comment?</h4>
 
+<% if @new_comment.errors.any? %>
+  <div id="error-explanation">
+    <h2><%= pluralize(@new_comment.errors.count, "error") %> prevented this Blog Post from being saved:</h2>
+
+<ul>
+  <% @new_comment.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+  </div>
+<% end %>
+
 <%= form_tag("/comments", method: :post) do %>
-  <input type="text" name="username" placeholder="Username">
+  <input type="text" name="username" value="<%= @new_comment.username %>" placeholder="Username">
   <br>
-  <textarea name="content" placeholder="Write Comment"></textarea>
+  <textarea name="content" placeholder="Write Comment"><%= @new_comment.content %></textarea>
   <br>
   <input type="hidden" name="blog_post_id" value="<%= @blog_post.id %>">
   <input type="submit" value="Leave Commment">  

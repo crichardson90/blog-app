@@ -1,24 +1,31 @@
 <h1>New Blog</h1>
 
+<% if @blog_post.errors.any? %>
+  <div id="error-explanation">
+    <h2><%= pluralize(@blog_post.errors.count, "error") %> prevented this Blog Post from being saved:</h2>
+
+<ul>
+  <% @blog_post.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+  </div>
+<% end %>
+
 <%= form_tag("/blog_posts", method: :post) do %>
   <label for="title">Enter Title:</label>
-  <input type="text" id="title" name="title" placeholder="New Title">
+  <input type="text" id="title" name="title" value="<%= @blog_post.title %>" placeholder="New Title">
   <br>
-<!--   <label for="tag_id">Select a topic:</label>
-  <select name="tag_id" id="tag_id">
-    <% @tags.each do |tag| %>
-    <option value="<%= tag.id %>"><%= tag.name %></option>
-<% end %>
-  </select> -->
+
   <%= label_tag(:tag_ids, "Select tag(s) for your post:") %>
   <br>
   <%= select_tag(:tag_ids, options_from_collection_for_select(@tags, :id, :name), multiple: true, id: "select-tag") %>
 
   <br>
   <label for="content">Enter Content:</label>
-  <textarea id="content" name="content" placeholder="Enter content here" cols="60" rows="20" style="resize: none"></textarea>
+  <textarea id="content" name="content" placeholder="Enter content here" cols="60" rows="20" style="resize: none"><%= @blog_post.content %></textarea>
   <br>
-  <input type="submit" value="Create Blog post">
+  <input type="submit" value="Create New Blog post">
 
 <% end %>
 

@@ -1,6 +1,17 @@
 <h1>EDIT PAGE</h1>
 
-<!-- This form is basically the new form but we 1.)can change the route to the Update route and 2.) populate the fields with existing data.  -->
+<% if @blog_post.errors.any? %>
+  <div id="error-explanation">
+    <h2><%= pluralize(@blog_post.errors.count, "error") %> prevented this Blog Post from being saved:</h2>
+
+<ul>
+  <% @blog_post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+ </div>
+<% end %>
+
 <%= form_tag("/blog_posts/#{@blog_post.id}", method: :put) do %>
   <label for="title">Enter Title:</label>
   <input type="text" id="title" name="title" value="<%= @blog_post.title %>">
