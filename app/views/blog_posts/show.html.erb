@@ -13,6 +13,7 @@
   </div>
 <% end %>
 
+<% if user_signed_in? %>
 
 <h4>Leave a Comment?</h4>
 
@@ -35,4 +36,5 @@
   <br>
   <input type="hidden" name="blog_post_id" value="<%= @blog_post.id %>">
   <input type="submit" value="Leave Commment">  
+<% end %>
 <% end %>

@@ -1,4 +1,6 @@
 class BlogPostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
      if params[:tag] && params[:tag].length > 2
       @tag_name = params[:tag]

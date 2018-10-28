@@ -1,4 +1,8 @@
 class CommentsController < ApplicationController
+ def index
+   redirect_back(fallback_location: "/blog_posts")
+ end
+
   def create
     @new_comment = Comment.new(
                               username: params[:username],
