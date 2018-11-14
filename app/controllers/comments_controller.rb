@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
 
   def create
     @new_comment = Comment.new(
-                              username: params[:username],
                               content: params[:content],
-                              blog_post_id: params[:blog_post_id]
+                              blog_post_id: params[:blog_post_id],
+                              user_id: current_user.id
                              )
   if @new_comment.save
     redirect_to "/blog_posts/#{@new_comment.blog_post_id}"
