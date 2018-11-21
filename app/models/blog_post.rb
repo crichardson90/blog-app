@@ -1,10 +1,13 @@
 class BlogPost < ApplicationRecord
   belongs_to :user
+  has_one_attached :cover_image
   has_many :comments, dependent: :destroy
   has_many :blog_post_tags, dependent: :destroy
   has_many :tags, through: :blog_post_tags
   validates :title, length: { minimum: 3, maximum: 25 }
   validates :content, presence: true
+
+
 
   def create_tags(input_tag_ids)
     input_tag_ids.each do |tag_id|
