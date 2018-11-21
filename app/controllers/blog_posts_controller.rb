@@ -17,6 +17,11 @@ class BlogPostsController < ApplicationController
     else
       @blog_posts = BlogPost.all.order(id: :asc)
     end
+
+    respond_to do |format|
+      format.html {render 'index'}
+      format.json {render json: @blog_posts, status: 200}
+    end
   end
 
    def show
